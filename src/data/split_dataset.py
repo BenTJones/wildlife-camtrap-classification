@@ -2,9 +2,7 @@ import pandas as pd
 from sklearn.model_selection import StratifiedGroupKFold
 
 def load_manifest(manifest:str) -> pd.DataFrame:
-    with open(manifest,'r',encoding= 'utf-8') as f:
-        df = pd.read_csv(f)
-    return df
+    return pd.read_csv(manifest)
     
 def split_df(df:pd.DataFrame,train_frac=0.8):
     '''Performs Stratified Group K fold splitting onto a df with the grouping of location and labels
@@ -29,3 +27,16 @@ def split_df(df:pd.DataFrame,train_frac=0.8):
     test = temp.iloc[test_idx]
     return train,val,test
 
+def summarise_split(split: pd.DataFrame,name:str):
+    n = len(split)
+    empty = (split['label'] == 'empty').sum()
+    stats = {
+        "split": name,
+        "rows": n,
+        "cols": split.shape[1],
+        "n_classes": split['label'].nunique(),
+        "n_groups": split['location'].nunique(),
+        "empty_count": empty,
+        "empty_pct": round(100 * empty / n, 2)
+    }
+    return stats
