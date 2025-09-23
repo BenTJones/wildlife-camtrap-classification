@@ -3,7 +3,7 @@
 *.pyo
 *.pyd
 *.egg-info/
-.venv/
+venv/
 .env
 .ipynb_checkpoints/
 
