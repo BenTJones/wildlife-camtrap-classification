@@ -9,7 +9,6 @@ venv/
 
 # Data & artifacts
 /data/
-!data/**/.gitkeep
 artifacts/
 logs/
 reports/figures/
