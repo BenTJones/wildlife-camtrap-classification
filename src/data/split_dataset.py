@@ -1,5 +1,6 @@
 import pandas as pd
 from sklearn.model_selection import StratifiedGroupKFold
+import os
 
 def load_manifest(manifest:str) -> pd.DataFrame:
     return pd.read_csv(manifest)
@@ -40,3 +41,9 @@ def summarise_split(split: pd.DataFrame,name:str):
         "empty_pct": round(100 * empty / n, 2)
     }
     return stats
+
+def save_splits(train,val,test, out_dir = 'data/cct/splits'):
+    os.makedirs(out_dir,exist_ok= True)
+    train.to_csv(os.path.join(out_dir,'train.csv'),index= False)
+    test.to_csv(os.path.join(out_dir,'test.csv'),index= False)
+    val.to_csv(os.path.join(out_dir,'val.csv'),index= False)

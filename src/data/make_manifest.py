@@ -12,17 +12,17 @@ def make_manifest_rows(img_path:str,coco:dict):
     label_by_image = {}
     
     for ann in coco['annotations']:
-        id = ann['image_id']
-        if id not in label_by_image:
-            label_by_image[id] = cat_by_id[ann['category_id']]
+        img_id = ann['image_id']
+        if img_id not in label_by_image:
+            label_by_image[img_id] = cat_by_id[ann['category_id']]
         
     rows,missing = [],[]
     
-    for id, img in img_by_id.items():
+    for img_id, img in img_by_id.items():
         rel = img['file_name'].replace('/',os.sep) #Ensure it works on diff os 
         path = os.path.join(img_path, rel)
         if os.path.exists(path):
-            label = label_by_image.get(id,'empty')
+            label = label_by_image.get(img_id,'empty')
             location = img.get('location')
             rows.append((rel,label,location))
         else:
@@ -58,7 +58,7 @@ def main(images,annotations,manifest_path,counts_path,missing_path):
     if missing:
         print(f'Missing Files: {missing_path}')
     
-if __name__ == 'main':
+if __name__ == '__main__':
     ap = argparse.ArgumentParser()
     ap.add_argument("-images", default="data/cct/images")
     ap.add_argument("-annotations", default="data/cct/annotations/caltech_images_20210113.json")
