@@ -45,7 +45,6 @@ def val(model,dataloader,loss_fn,device):
         lbls = lbls.to(device)
         
         preds = model(imgs)
-        class_pred = torch.max(preds,1)
         
         loss = loss_fn(preds,lbls)
         val_loss += loss.item()
