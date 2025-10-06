@@ -1,8 +1,14 @@
 import torch
 from src.data.dataset import CCTImageDataset
 import pandas as pd
-from src.models.model import create_model
 from torch.nn import CrossEntropyLoss
+import csv
+
+def setup_loss_log(out:str):
+    with open(out,'w',newline='',encoding='utf-8') as f:
+        w = csv.writer(f)
+        w.writerow(["epoch", "train_loss", "train_acc", "val_loss", "val_acc"])
+        
 
 def train_one_epoch(model,dataloader,optimiser,loss_fn,device):
     train_loss = 0.0
@@ -50,7 +56,7 @@ def val(model,dataloader,loss_fn,device):
     return avg_val_loss,val_acc
 
 
-def run(train_loader,val_loader,model,val,lr,epochs):
+def run(train_loader,val_loader,model,lr,epochs,patience,log_path):
     device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
     loss_fn = CrossEntropyLoss()
     optimiser = torch.optim.Adam(params = model.parameters(),lr= lr)
@@ -62,7 +68,16 @@ def run(train_loader,val_loader,model,val,lr,epochs):
         print(f'Train Loss: {train_loss:.5f} & Train Accuracy: {train_acc*100:.3f}')
         print(f'Val Loss: {val_loss:.5f} & Val Accuracy: {val_acc*100:.3f}')
         
+        with open(log_path, mode="a", newline="",encoding='utf-8') as f:
+            writer = csv.writer(f)
+            writer.writerow([e, train_loss, train_acc, val_loss, val_acc])
+        
         if val_loss<best_val_loss:
             best_val_loss = val_loss
             torch.save(model.state_dict(),'best_model.pth')
-    
+            patience_counter = 0
+        
+        else:
+            patience_counter += 1
+            if patience_counter == patience:
+                break

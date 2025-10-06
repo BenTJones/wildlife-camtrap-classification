@@ -47,3 +47,15 @@ def save_splits(train,val,test, out_dir = 'data/cct/splits'):
     train.to_csv(os.path.join(out_dir,'train.csv'),index= False)
     test.to_csv(os.path.join(out_dir,'test.csv'),index= False)
     val.to_csv(os.path.join(out_dir,'val.csv'),index= False)
+    
+from sklearn.model_selection import train_test_split
+
+def make_subset(train:pd.DataFrame,frac : int):
+    '''Splits dataset allowing for running on local machine'''
+    sub,_ = train_test_split(
+        train,
+        train_size= frac,
+        shuffle= True,
+        stratify= train['label']
+    )
+    return sub

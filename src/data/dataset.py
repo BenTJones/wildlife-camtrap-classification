@@ -29,9 +29,9 @@ def transform_images(train:bool,size:int = 224):
         ])
 
 class CCTImageDataset(Dataset): #Tells Dataloader how to access and transform images before passing into model
-    def __init__(self,df,image_dir,class_to_idx,transform = False):
+    def __init__(self,df,image_dir,class_to_idx,transform = None):
        self.image_dir = image_dir
-       self.transform = transform_images(transform)
+       self.transform = transform
        self.class_to_idx = class_to_idx
        
        df['full_path'] = self.image_dir + os.sep + df['rel_path']
