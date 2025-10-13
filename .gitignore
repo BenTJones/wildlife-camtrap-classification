@@ -11,7 +11,6 @@ venv/
 /data/
 artifacts/
 logs/
-reports/tables/
 
 .DS_Store
 .vscode/
