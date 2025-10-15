@@ -26,9 +26,9 @@ Learning Rate : 1e-3
 ## Results Summary
 
 **Metric** : **Value**  
-Validation Accuracy : ~61.6% 
-Validation Loss : 0.043 
-Best Epoch : 6 
+Validation Accuracy : ~61.6%   
+Validation Loss : 0.043   
+Best Epoch : 6   
 
 Training and validation metrics indicate stable convergence with mild overfitting, expected given dataset imbalance and limited compute.
 
