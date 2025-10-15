@@ -45,14 +45,14 @@ Training and validation metrics indicate stable convergence with mild overfittin
 ![Per-Class F1](reports/figures/Class_f1.png)
 
 ## Repository Structure
-├── src/ # Model, dataset, and training scripts
-├── notebooks/ # Jupyter notebooks for running of scripts and analysis
-├── reports/
-│ ├── figures/ # Output plots and visualizations
-│ ├── classification_report.csv
-│ └── performance_log.csv
-├── data
-└── README.md
+├── src/ # Model, dataset, and training scripts  
+├── notebooks/ # Jupyter notebooks for running of scripts and analysis  
+├── reports/  
+│ ├── figures/ # Output plots and visualizations  
+│ ├── classification_report.csv  
+│ └── performance_log.csv  
+├── data  
+└── README.md   
 
 
 ## How to Run
