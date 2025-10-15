@@ -12,17 +12,17 @@ The focus was on understanding the process and being able to set up image deep l
 ## Technical Overview
 
 **Component** : **Details** 
-Dataset : Caltech Camera Traps (CCT20) – 260K images (subset used: ~20%) 
-Model : EfficientNet-B0 (pretrained on ImageNet) 
-Framework : PyTorch 
-Image Size : 224 × 224 
-Loss Function : CrossEntropyLoss 
-Optimizer : Adam 
-Split : 80/10/10 (StratifiedGroupKFold by location and label)
-Hardware : CPU-only training 
-Epochs : 6 
-Learning Rate : 1e-3 
-
+Dataset : Caltech Camera Traps (CCT20) – 260K images (subset used: ~20%)     
+Model : EfficientNet-B0 (pretrained on ImageNet)   
+Framework : PyTorch   
+Image Size : 224 × 224   
+Loss Function : CrossEntropyLoss   
+Optimizer : Adam    
+Split : 80/10/10 (StratifiedGroupKFold by location and label)  
+Hardware : CPU-only training   
+Epochs : 6   
+Learning Rate : 1e-3    
+   
 ## Results Summary
 
 **Metric** : **Value**  
