@@ -45,4 +45,52 @@ Training and validation metrics indicate stable convergence with mild overfittin
 ![Per-Class F1](reports/figures/Class_f1.png)
 
 ## Repository Structure
+├── src/ # Model, dataset, and training scripts
+├── notebooks/ # Jupyter notebooks for running of scripts and analysis
+├── reports/
+│ ├── figures/ # Output plots and visualizations
+│ ├── classification_report.csv
+│ └── performance_log.csv
+├── data
+└── README.md
 
+
+## How to Run
+
+1. Install dependencies  
+   pip install -r requirements.txt
+
+2. Prepare dataset
+Download the Caltech Camera Traps (CCT20) dataset and structure it as:
+
+   data/cct/  
+   ├── images/  
+   └── annotations/  
+
+3. Datapreprocessing, set up Dataloader and Datasets, then train models all:
+   jupyter notebook notebooks/exploratory_notebook.ipynb
+
+4. Metric Analysis:
+   jupyter notebook notebooks/metrics.ipynb
+
+## Discussion Summary
+
+The model converged smoothly, with validation accuracy reaching about 61%.  
+Training and validation losses remained close, indicating model was capable of learning without major overfitting.  
+Performance was strongest on frequent or visually distinct classes, while minority classes performed poorly likely due to data imbalance.  
+
+## Future Work
+
+- Apply data augmentation and class-weighted loss
+- Introduce learning-rate scheduling
+- Train full dataset with GPU acceleration
+- Investigate model calibration and deployment options
+
+Author
+
+[Ben Jones]
+Molecular Bioengineering, Imperial College London
+October 2025
+
+
+Note: This project was created to demonstrate practical implementation of an image classification workflow on a real-world dataset.
